@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Admin · Penca Mundial 2026</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-brand"><span class="nav-logo">⚽</span><span class="nav-title">Penca Mundial <strong>2026</strong> · <span style="color:#D4AA00">ADMIN</span></span></div>
+  <div class="nav-links">
+    <a href="index.html" class="nav-link">Volver al sitio</a>
+  </div>
+  <div class="nav-user" id="nav-user">
+    <span id="nav-nombre"></span>
+    <button class="btn-outline" onclick="logout()">Salir</button>
+  </div>
+</nav>
+
+<main>
+  <div class="page-header">
+    <h1>Panel de Administración</h1>
+    <p>Ingresá los resultados reales de los partidos. Los puntajes se calculan automáticamente.</p>
+  </div>
+
+  <div id="admin-blocked" class="alert-error hidden">
+    Acceso restringido. Iniciá sesión como administrador.
+  </div>
+
+  <div id="admin-content" class="hidden">
+    <div class="admin-grid">
+      <!-- Ingresar resultado -->
+      <div class="card">
+        <h3>Ingresar resultado de partido</h3>
+        <div class="form-group">
+          <label>Partido</label>
+          <select id="admin-partido">
+            <option value="">Cargando partidos…</option>
+          </select>
+        </div>
+        <div class="admin-score-row">
+          <div class="form-group">
+            <label id="lbl-local">Local</label>
+            <input type="number" id="admin-gl" min="0" max="20" value="0" class="score-input-lg">
+          </div>
+          <div class="score-sep">:</div>
+          <div class="form-group">
+            <label id="lbl-visitante">Visitante</label>
+            <input type="number" id="admin-gv" min="0" max="20" value="0" class="score-input-lg">
+          </div>
+        </div>
+        <div id="admin-result-msg" class="hidden"></div>
+        <button class="btn-primary btn-block" onclick="guardarResultado()">
+          Guardar resultado y calcular puntajes
+        </button>
+      </div>
+
+      <!-- Lista de partidos -->
+      <div class="card">
+        <h3>Estado de partidos</h3>
+        <div id="admin-partidos-lista">
+          <div class="loading">Cargando…</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="footer"><p>Penca Mundial 2026 · Panel Administrador</p></footer>
+<script src="js/api.js"></script>
+<script src="js/app.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

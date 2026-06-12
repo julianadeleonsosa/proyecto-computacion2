@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Penca Mundial 2026</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-brand">
+    <span class="nav-logo">⚽</span>
+    <span class="nav-title">Penca Mundial <strong>2026</strong></span>
+  </div>
+  <div class="nav-links">
+    <a href="index.html" class="nav-link active">Inicio</a>
+    <a href="pronosticos.html" class="nav-link">Pronósticos</a>
+    <a href="clasificacion.html" class="nav-link">Clasificación</a>
+    <a href="estadisticas.html" class="nav-link">Estadísticas</a>
+  </div>
+  <div class="nav-auth" id="nav-auth">
+    <button class="btn-outline" onclick="openModal('modal-login')">Iniciar sesión</button>
+    <button class="btn-primary" onclick="openModal('modal-registro')">Registrarse</button>
+  </div>
+  <div class="nav-user hidden" id="nav-user">
+    <span id="nav-nombre"></span>
+    <button class="btn-outline" onclick="logout()">Salir</button>
+  </div>
+</nav>
+
+<main>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">FIFA World Cup 2026 · USA · CAN · MEX</div>
+      <h1 class="hero-title">Penca del<br><span class="hero-highlight">Mundial 2026</span></h1>
+      <p class="hero-sub">Ingresá tus pronósticos, acumulá puntos y competí por el primer lugar en la clasificación.</p>
+      <div class="hero-actions">
+        <button class="btn-primary btn-lg" onclick="openModal('modal-registro')">Participar gratis</button>
+        <a href="clasificacion.html" class="btn-outline btn-lg">Ver clasificación</a>
+      </div>
+    </div>
+    <div class="hero-stats" id="hero-stats">
+      <div class="stat-card"><div class="stat-num" id="stat-participantes">—</div><div class="stat-label">Participantes</div></div>
+      <div class="stat-card"><div class="stat-num" id="stat-pronosticos">—</div><div class="stat-label">Pronósticos</div></div>
+      <div class="stat-card"><div class="stat-num" id="stat-partidos">—</div><div class="stat-label">Partidos jugados</div></div>
+      <div class="stat-card"><div class="stat-num" id="stat-lider">—</div><div class="stat-label">Líder actual</div></div>
+    </div>
+  </section>
+
+  <!-- Próximos partidos -->
+  <section class="section">
+    <div class="section-header">
+      <h2>Próximos partidos</h2>
+      <a href="pronosticos.html" class="btn-text">Ver todos →</a>
+    </div>
+    <div class="partidos-grid" id="proximos-partidos">
+      <div class="loading">Cargando partidos…</div>
+    </div>
+  </section>
+
+  <!-- Top 5 ranking -->
+  <section class="section">
+    <div class="section-header">
+      <h2>Top 5 clasificación</h2>
+      <a href="clasificacion.html" class="btn-text">Ver ranking completo →</a>
+    </div>
+    <div id="top5-ranking">
+      <div class="loading">Cargando ranking…</div>
+    </div>
+  </section>
+</main>
+
+<!-- MODAL LOGIN -->
+<div class="modal-overlay hidden" id="modal-login">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Iniciar sesión</h3>
+      <button class="modal-close" onclick="closeModal('modal-login')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div id="login-error" class="alert-error hidden"></div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="login-email" placeholder="tu@email.com" autocomplete="email">
+      </div>
+      <div class="form-group">
+        <label>Contraseña</label>
+        <input type="password" id="login-password" placeholder="••••••" autocomplete="current-password">
+      </div>
+      <button class="btn-primary btn-block" onclick="login()">Entrar</button>
+      <p class="modal-switch">¿No tenés cuenta? <a href="#" onclick="switchModal('modal-login','modal-registro')">Registrate</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL REGISTRO -->
+<div class="modal-overlay hidden" id="modal-registro">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Crear cuenta</h3>
+      <button class="modal-close" onclick="closeModal('modal-registro')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div id="reg-error" class="alert-error hidden"></div>
+      <div id="reg-ok" class="alert-ok hidden"></div>
+      <div class="form-group">
+        <label>Nombre completo</label>
+        <input type="text" id="reg-nombre" placeholder="Tu nombre">
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="reg-email" placeholder="tu@email.com">
+      </div>
+      <div class="form-group">
+        <label>Contraseña (mín. 6 caracteres)</label>
+        <input type="password" id="reg-password" placeholder="••••••">
+      </div>
+      <button class="btn-primary btn-block" onclick="registro()">Registrarse</button>
+      <p class="modal-switch">¿Ya tenés cuenta? <a href="#" onclick="switchModal('modal-registro','modal-login')">Iniciá sesión</a></p>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <p>Penca Mundial 2026 · Proyecto Académico · <a href="https://github.com" target="_blank">GitHub</a></p>
+</footer>
+
+<script src="js/api.js"></script>
+<script src="js/app.js"></script>
+<script>
+  cargarEstadisticas();
+  cargarProximosPartidos();
+  cargarTop5();
+</script>
+</body>
+</html>
